@@ -1,0 +1,42 @@
+---
+- name: Configure Web Servers
+  hosts: web
+  become: yes
+ 
+  tasks:
+ 
+    - name: Update packages
+      yum:
+        name: "*"
+        state: latest
+ 
+    - name: Install Apache, PHP, MySQL client
+      yum:
+        name:
+          - httpd
+          - php
+          - php-mysqlnd
+          - mysql
+        state: present
+ 
+    - name: Start and enable Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+ 
+    - name: Copy index.php
+      copy:
+        src: files/index.php
+        dest: /var/www/html/index.php
+        owner: apache
+        group: apache
+        mode: 0644
+ 
+    - name: Copy db_check.php
+      copy:
+        src: files/db_check.php
+        dest: /var/www/html/db_check.php
+        owner: apache
+        group: apache
+        mode: 0644
