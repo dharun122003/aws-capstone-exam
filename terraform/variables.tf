@@ -1,3 +1,7 @@
+variable "region" {
+  default = "us-east-1"
+}
+ 
 variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
@@ -15,6 +19,10 @@ variable "azs" {
 }
  
 variable "my_ip" {
-  description = "Your public IP for SSH access"
+  description = "Your public IP for SSH (x.x.x.x/32)"
   default     = "0.0.0.0/0"
+}
+ 
+variable "key_name" {
+  description = "EC2 Key Pair name"
 }
