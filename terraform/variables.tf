@@ -25,4 +25,6 @@ variable "my_ip" {
  
 variable "key_name" {
   description = "EC2 Key Pair name"
+  type        = string
+  default     = "dhar"  # Replace with your key name
 }
